@@ -64,6 +64,11 @@
                         <br>
 
                         <div class="form-group">
+                            <label for="password-confirm" class="col-md-4 control-label">Права администратора</label>
+                            <input type="checkbox" name="admin">
+                        </div>
+
+                        <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Регистрация

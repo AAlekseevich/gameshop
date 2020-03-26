@@ -55,11 +55,9 @@
                 <div class="sidebar-item__title">Категории</div>
                 <div class="sidebar-item__content">
                     <ul class="sidebar-category">
-                        <li class="sidebar-category__item"><a href="#" class="sidebar-category__item__link">Action</a></li>
-                        <li class="sidebar-category__item"><a href="#" class="sidebar-category__item__link">RPG</a></li>
-                        <li class="sidebar-category__item"><a href="#" class="sidebar-category__item__link">Квесты</a></li>
-                        <li class="sidebar-category__item"><a href="#" class="sidebar-category__item__link">Онлайн-игры</a></li>
-                        <li class="sidebar-category__item"><a href="#" class="sidebar-category__item__link">Стратегии</a></li>
+                        @foreach($categories as $category)
+                        <li class="sidebar-category__item"><a href="#" class="sidebar-category__item__link">{{ $category->name }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -67,18 +65,12 @@
                 <div class="sidebar-item__title">Последние новости</div>
                 <div class="sidebar-item__content">
                     <div class="sidebar-news">
+                        @foreach($randomNews as $item)
                         <div class="sidebar-news__item">
-                            <div class="sidebar-news__item__preview-news"><img src="img/cover/game-2.jpg" alt="image-new" class="sidebar-new__item__preview-new__image"></div>
-                            <div class="sidebar-news__item__title-news"><a href="#" class="sidebar-news__item__title-news__link">О новых играх в режиме VR</a></div>
+                            <div class="sidebar-news__item__preview-news"><img src="{{ $item->image }}" alt="image-new" class="sidebar-new__item__preview-new__image"></div>
+                            <div class="sidebar-news__item__title-news"><a href="#" class="sidebar-news__item__title-news__link">{{ $item->title }}</a></div>
                         </div>
-                        <div class="sidebar-news__item">
-                            <div class="sidebar-news__item__preview-news"><img src="img/cover/game-1.jpg" alt="image-new" class="sidebar-new__item__preview-new__image"></div>
-                            <div class="sidebar-news__item__title-news"><a href="#" class="sidebar-news__item__title-news__link">О новых играх в режиме VR</a></div>
-                        </div>
-                        <div class="sidebar-news__item">
-                            <div class="sidebar-news__item__preview-news"><img src="img/cover/game-4.jpg" alt="image-new" class="sidebar-new__item__preview-new__image"></div>
-                            <div class="sidebar-news__item__title-news"><a href="#" class="sidebar-news__item__title-news__link">О новых играх в режиме VR</a></div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -111,7 +103,17 @@
     <footer class="footer">
         <div class="footer__footer-content">
             <div class="random-product-container">
-                @yield('rand-product')
+                <div class="random-product-container__head">Случайный товар</div>
+                <div class="random-product-container__content">
+                    <div class="item-product">
+                        <div class="item-product__title-product"><a href="#" class="item-product__title-product__link">{{ $randProduct->name }}</a></div>
+                        <div class="item-product__thumbnail"><a href="#" class="item-product__thumbnail__link"><img src="{{ $randProduct->image }}" alt="Preview-image" class="item-product__thumbnail__link__img"></a></div>
+                        <div class="item-product__description">
+                            <div class="item-product__description__products-price"><span class="products-price">{{ $randProduct->price }} руб</span></div>
+                            <div class="item-product__description__btn-block"><a href="#" class="btn btn-blue">Купить</a></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="footer__footer-content__main-content">
                 <p>

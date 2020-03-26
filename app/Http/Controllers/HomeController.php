@@ -28,8 +28,7 @@ class HomeController extends Controller
         $products = DB::table('products')
             ->orderBy('id')
             ->paginate(6);
-        $randProduct = Products::orderByRaw("RAND()")->first();;
-        return view('index', ['products' => $products, 'randProduct' => $randProduct]);
+        return view('index', ['products' => $products]);
     }
 
     public function search()
