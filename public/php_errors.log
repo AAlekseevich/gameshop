@@ -1,0 +1,24 @@
+[27-Mar-2020 12:26:46 UTC] PHP Fatal error:  Uncaught UnexpectedValueException: The stream or file "/var/www/loftschool/storage/logs/laravel.log" could not be opened: failed to open stream: Permission denied in /var/www/loftschool/vendor/monolog/monolog/src/Monolog/Handler/StreamHandler.php:108
+Stack trace:
+#0 /var/www/loftschool/vendor/monolog/monolog/src/Monolog/Handler/AbstractProcessingHandler.php(39): Monolog\Handler\StreamHandler->write(Array)
+#1 /var/www/loftschool/vendor/monolog/monolog/src/Monolog/Logger.php(344): Monolog\Handler\AbstractProcessingHandler->handle(Array)
+#2 /var/www/loftschool/vendor/monolog/monolog/src/Monolog/Logger.php(712): Monolog\Logger->addRecord(400, Object(UnexpectedValueException), Array)
+#3 /var/www/loftschool/vendor/laravel/framework/src/Illuminate/Log/Writer.php(202): Monolog\Logger->error(Object(UnexpectedValueException), Array)
+#4 /var/www/loftschool/vendor/laravel/framework/src/Illuminate/Log/Writer.php(113): Illuminate\Log\Writer->writeLog('error', Object(UnexpectedValueException), Array)
+#5 /var/www/loftschool/ in /var/www/loftschool/vendor/monolog/monolog/src/Monolog/Handler/StreamHandler.php on line 108
+[27-Mar-2020 12:27:47 UTC] PHP Fatal error:  Uncaught UnexpectedValueException: The stream or file "/var/www/loftschool/storage/logs/laravel.log" could not be opened: failed to open stream: Permission denied in /var/www/loftschool/vendor/monolog/monolog/src/Monolog/Handler/StreamHandler.php:108
+Stack trace:
+#0 /var/www/loftschool/vendor/monolog/monolog/src/Monolog/Handler/AbstractProcessingHandler.php(39): Monolog\Handler\StreamHandler->write(Array)
+#1 /var/www/loftschool/vendor/monolog/monolog/src/Monolog/Logger.php(344): Monolog\Handler\AbstractProcessingHandler->handle(Array)
+#2 /var/www/loftschool/vendor/monolog/monolog/src/Monolog/Logger.php(712): Monolog\Logger->addRecord(400, Object(UnexpectedValueException), Array)
+#3 /var/www/loftschool/vendor/laravel/framework/src/Illuminate/Log/Writer.php(202): Monolog\Logger->error(Object(UnexpectedValueException), Array)
+#4 /var/www/loftschool/vendor/laravel/framework/src/Illuminate/Log/Writer.php(113): Illuminate\Log\Writer->writeLog('error', Object(UnexpectedValueException), Array)
+#5 /var/www/loftschool/ in /var/www/loftschool/vendor/monolog/monolog/src/Monolog/Handler/StreamHandler.php on line 108
+[27-Mar-2020 12:27:57 UTC] PHP Fatal error:  Uncaught UnexpectedValueException: The stream or file "/var/www/loftschool/storage/logs/laravel.log" could not be opened: failed to open stream: Permission denied in /var/www/loftschool/vendor/monolog/monolog/src/Monolog/Handler/StreamHandler.php:108
+Stack trace:
+#0 /var/www/loftschool/vendor/monolog/monolog/src/Monolog/Handler/AbstractProcessingHandler.php(39): Monolog\Handler\StreamHandler->write(Array)
+#1 /var/www/loftschool/vendor/monolog/monolog/src/Monolog/Logger.php(344): Monolog\Handler\AbstractProcessingHandler->handle(Array)
+#2 /var/www/loftschool/vendor/monolog/monolog/src/Monolog/Logger.php(712): Monolog\Logger->addRecord(400, Object(UnexpectedValueException), Array)
+#3 /var/www/loftschool/vendor/laravel/framework/src/Illuminate/Log/Writer.php(202): Monolog\Logger->error(Object(UnexpectedValueException), Array)
+#4 /var/www/loftschool/vendor/laravel/framework/src/Illuminate/Log/Writer.php(113): Illuminate\Log\Writer->writeLog('error', Object(UnexpectedValueException), Array)
+#5 /var/www/loftschool/ in /var/www/loftschool/vendor/monolog/monolog/src/Monolog/Handler/StreamHandler.php on line 108

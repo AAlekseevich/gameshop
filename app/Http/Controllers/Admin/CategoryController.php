@@ -11,12 +11,17 @@ class CategoryController extends Controller
 {
     public function category()
     {
-        $categories = DB::table('category')->get();
+        $categories = Categories::get();
         return view('admin.category.category', ['categories' => $categories]);
     }
 
-    public function create($data)
+    public function create()
     {
+        $data = [
+            'name' => $_POST['name'],
+            'description' => $_POST['description']
+        ];
+        Categories::firstOrCreate($data);
         return redirect()->route('category');
     }
 
@@ -27,12 +32,12 @@ class CategoryController extends Controller
 
     public function edit()
     {
-
+        return view( 'admin.category.edit');
     }
 
     public function remove($id)
     {
-        DB::table('category')->where('id', '=', $id)->delete();
+        Categories::destroy($id);
         return redirect()->route('category');
     }
 

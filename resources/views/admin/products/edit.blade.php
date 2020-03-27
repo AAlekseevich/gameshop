@@ -1,9 +1,9 @@
 @extends('admin.layouts.admin')
 
-@section('title', 'Добавить категорию')
+@section('title', 'Редактировать категорию')
 
 @section('content')
-    <form action="{{route('category.create')}}" method="post">
+    <form action="{{route('products.edit')}}" method="post">
         {{ csrf_field() }}
         <label>Название</label><input type="text" name="name">
         <label>Описание</label><input type="text" name="description">

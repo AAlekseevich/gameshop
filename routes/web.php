@@ -28,7 +28,7 @@ Route::group( [ 'middleware' => 'admin', 'prefix' => 'admin' ], function () {
     Route::get('/products/edit/{id}', 'Admin\ProductsController@edit')->name('products.edit');
     Route::get('/products/remove/{id}', 'Admin\ProductsController@remove')->name('products.remove');
     Route::get('/products/add', 'Admin\ProductsController@add')->name('products.add');
-    Route::post('/products/create', 'Admin\ProductsController@create')->name('products.add');
+    Route::post('/products/create', 'Admin\ProductsController@create')->name('products.create');
     Route::get('/orders', 'Admin\OrdersController@orders')->name('orders');
     Route::get('/changemail', 'Admin\AdminController@changemail')->name('changemail');
 });

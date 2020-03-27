@@ -3,10 +3,12 @@
 @section('title', 'Товары')
 
 @section('content')
+    <a href="{{route('products.add')}}">Добавить товар</a>
     <table border="1">
         <tr>
             <th>ID</th>
             <th>Название</th>
+            <th>Категория</th>
             <th>Описание</th>
             <th>Цена</th>
             <th>Количество</th>
@@ -17,6 +19,7 @@
             <tr>
                 <td>{{$product->id}}</td>
                 <td>{{$product->name}}</td>
+                <td>{{$product->category}}</td>
                 <td>{{substr($product->description, 0, 300)}}</td>
                 <td>{{$product->price}}</td>
                 <td>{{$product->count}}</td>
