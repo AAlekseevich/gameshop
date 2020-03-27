@@ -5,8 +5,8 @@
 @section('content')
     <form action="{{route('category.create')}}" method="post">
         {{ csrf_field() }}
-        <label>Название</label><input type="text" name="name">
-        <label>Описание</label><input type="text" name="description">
+        <label>Название</label><input type="text" name="name"><br>
+        <label>Описание</label><input type="text" name="description"><br>
         <button type="submit" class="btn btn-primary">Добавить</button>
     </form>
 @endsection

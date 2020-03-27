@@ -30,9 +30,19 @@ class CategoryController extends Controller
         return view('admin.category.add');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view( 'admin.category.edit');
+        return view('admin.category.edit', ['category' => Categories::find($id), 'id' => $id]);
+    }
+
+    public function update()
+    {
+        $id = $_POST['id'];
+        $category = Categories::find($id);
+        $category->name = $_POST['name'];
+        $category->description = $_POST['description'];
+        $category->save();
+        return redirect()->route('category');
     }
 
     public function remove($id)

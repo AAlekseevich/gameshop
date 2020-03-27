@@ -17,6 +17,7 @@ Route::get('about', function () { return view('about'); })->name('about');
 Route::get('news', 'NewsController@index')->name('news');
 Route::post('search', 'HomeController@search')->name('search');
 
+
 Route::group( [ 'middleware' => 'admin', 'prefix' => 'admin' ], function () {
     Route::get('/', 'Admin\AdminController@index')->name('admin');
     Route::get('/category', 'Admin\CategoryController@category')->name('category');
@@ -24,8 +25,10 @@ Route::group( [ 'middleware' => 'admin', 'prefix' => 'admin' ], function () {
     Route::get('/category/remove/{id}', 'Admin\CategoryController@remove')->name('category.remove');
     Route::get('/category/add', 'Admin\CategoryController@add')->name('category.add');
     Route::post('/category/create', 'Admin\CategoryController@create')->name('category.create');
+    Route::post('/category/update', 'Admin\CategoryController@update')->name('category.update');
     Route::get('/products', 'Admin\ProductsController@products')->name('products');
     Route::get('/products/edit/{id}', 'Admin\ProductsController@edit')->name('products.edit');
+    Route::post('/products/update', 'Admin\ProductsController@update')->name('products.update');
     Route::get('/products/remove/{id}', 'Admin\ProductsController@remove')->name('products.remove');
     Route::get('/products/add', 'Admin\ProductsController@add')->name('products.add');
     Route::post('/products/create', 'Admin\ProductsController@create')->name('products.create');
@@ -35,3 +38,4 @@ Route::group( [ 'middleware' => 'admin', 'prefix' => 'admin' ], function () {
 
 
 Auth::routes();
+Route::get('product/{id}', 'ProductController@index')->name('single.product');

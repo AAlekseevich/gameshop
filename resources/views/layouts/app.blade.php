@@ -40,7 +40,7 @@
             @if (Auth::guest())
                 <div class="authorization-block"><a href="{{ url('/register') }}" class="authorization-block__link">Регистрация</a><a href="{{ url('/login') }}" class="authorization-block__link">Войти</a></div>
             @else
-                <div class="authorization-block"><a href="{{ url('/register') }}" class="authorization-block__link">{{ Auth::user()->name }}</a>
+                <div class="authorization-block"><a href="{{ url('admin') }}" class="authorization-block__link">{{ Auth::user()->name }}</a>
                     <a class="authorization-block__link" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти</a>
                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}

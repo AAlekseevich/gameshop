@@ -3,7 +3,7 @@
 @section('title', 'Товары')
 
 @section('content')
-    <a href="{{route('products.add')}}">Добавить товар</a>
+    <a href="{{route('products')}}">Добавить товар</a>
     <table border="1">
         <tr>
             <th>ID</th>
