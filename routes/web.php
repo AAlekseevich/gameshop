@@ -16,6 +16,7 @@ Route::get('/', 'HomeController@index')->name('index');
 Route::get('about', function () { return view('about'); })->name('about');
 Route::get('news', 'NewsController@index')->name('news');
 Route::post('search', 'HomeController@search')->name('search');
+Route::get('/single-news/{id}', 'NewsController@singleNews')->name('single-news');
 
 
 Route::group( [ 'middleware' => 'admin', 'prefix' => 'admin' ], function () {
@@ -32,10 +33,31 @@ Route::group( [ 'middleware' => 'admin', 'prefix' => 'admin' ], function () {
     Route::get('/products/remove/{id}', 'Admin\ProductsController@remove')->name('products.remove');
     Route::get('/products/add', 'Admin\ProductsController@add')->name('products.add');
     Route::post('/products/create', 'Admin\ProductsController@create')->name('products.create');
-    Route::get('/orders', 'Admin\OrdersController@orders')->name('orders');
+    Route::get('/orders', 'Admin\OrdersController@allOrders')->name('orders');
+    Route::get('/orders/edit/{id}', 'Admin\OrdersController@edit')->name('orders.edit');
+    Route::post('/orders/update', 'Admin\OrdersController@update')->name('orders.update');
+    Route::get('/orders/remove/{id}', 'Admin\OrdersController@remove')->name('orders.remove');
     Route::get('/changemail', 'Admin\AdminController@changemail')->name('changemail');
 });
 
+Route::group(['middleware' => ['web']], function() {
 
-Auth::routes();
-Route::get('product/{id}', 'ProductController@index')->name('single.product');
+    Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
+    Route::post('login', ['as' => 'login.post', 'uses' => 'Auth\LoginController@login']);
+    Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+
+    Route::get('register', ['as' => 'register', 'uses' => 'Auth\RegisterController@showRegistrationForm']);
+    Route::post('register', ['as' => 'register.post', 'uses' => 'Auth\RegisterController@register']);
+
+    Route::get('password/reset', ['as' => 'password.reset', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
+    Route::post('password/email', ['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
+    Route::get('password/reset/{token}', ['as' => 'password.reset.token', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
+    Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'Auth\ResetPasswordController@reset']);
+});
+
+Route::group(['middleware' => 'auth'], function()
+{
+    Route::get('orders', 'OrdersController@myOrders')->name('my-orders');
+    Route::get('/product/{id}', 'ProductController@showProduct')->name('product');
+    Route::post('/order/create', 'OrdersController@orderCreate')->name('order.create');
+});

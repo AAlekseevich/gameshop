@@ -15,7 +15,7 @@
                         <div class="news-list__item__content__news-date">04.12.2016</div>
                         <div class="news-list__item__content__news-content">{{ substr($item->description, 0, 300)}}</div>
                     </div>
-                    <div class="news-list__item__content__news-btn-wrap"><a href="#" class="btn btn-brown">Подробнее</a></div>
+                    <div class="news-list__item__content__news-btn-wrap"><a href="{{route('single-news', ['id' => $item->id])}}" class="btn btn-brown">Подробнее</a></div>
                 </div>
             @endforeach
         </div>

@@ -3,6 +3,7 @@
 @section('title', 'Категории')
 
 @section('content')
+    <h2>Таблица категорий:</h2>
     <a href="{{route('category.add')}}">Добавить категорию</a>
 
 <table border="1">

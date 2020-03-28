@@ -22,10 +22,13 @@ class ProductsController extends Controller
             $tmpPhoto = $_FILES['image']['tmp_name'];
             $namePhoto = $_FILES['image']['name'];
 
-            $imagePath = public_path() . '/image/';
+            $imagePath = 'img/' . $namePhoto;
+            if (!file_exists(public_path('img/products/'))) {
+                mkdir(public_path('img/products/'), 777, true);
+            }
             $manager = new Image(array('driver' => 'gd'));
-            $manager->make($tmpPhoto)->save($imagePath . $namePhoto);
-            $image = '/image/' . $namePhoto;
+            $manager->make($tmpPhoto)->save($imagePath);
+            $image = '/img/' . $namePhoto;
         } else {
             $image = '';
         }
@@ -58,10 +61,13 @@ class ProductsController extends Controller
             $tmpPhoto = $_FILES['image']['tmp_name'];
             $namePhoto = $_FILES['image']['name'];
 
-            $imagePath = public_path() . '/image/';
+            $imagePath = 'img/cover/' . $namePhoto;
+            if (!file_exists(public_path('img/cover/'))) {
+                mkdir(public_path('img/cover/'), 777, true);
+            }
             $manager = new Image(array('driver' => 'gd'));
-            $manager->make($tmpPhoto)->save($imagePath . $namePhoto);
-            $image = '/image/' . $namePhoto;
+            $manager->make($tmpPhoto)->save($imagePath);
+            $image = '/img/cover/' . $namePhoto;
         } else {
             $image = '';
         }
@@ -73,7 +79,7 @@ class ProductsController extends Controller
         $product->price = $_POST['price'];
         $product->count = $_POST['count'];
         $product->description = $_POST['description'];
-        $product->image = $image;
+        $product->image = empty($image) ? $product->image : $image;
         $product->save();
         return redirect()->route('products');
     }

@@ -16,7 +16,7 @@
         <label>Цена</label><input type="text" name="price" value="{{$product->price}}"><br>
         <label>количество</label><input type="text" name="count" value="{{$product->count}}"><br>
         <label>Описание</label><textarea type="text" name="description" rows="10" cols="120" >{{$product->description}}</textarea><br>
-        <label>Изображение</label><input type="file" name="image"><br>
+        <label>Изображение</label><input type="file" name="image" value="{{$product->image}}"><br>
         <button type="submit" class="btn btn-primary">Добавить</button>
     </form>
 @endsection

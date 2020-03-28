@@ -41,6 +41,9 @@ img {
   max-width: 100%;
   height: auto; }
 
+.blocker {
+  z-index: 999 !important;}
+
 /* main wrapper page*/
 .main-wrapper {
   width: 1200px;
@@ -1120,3 +1123,4 @@ a img.aligncenter {
   width: 130%;
   background-color: #d0e26c;
   z-index: -5; }
+

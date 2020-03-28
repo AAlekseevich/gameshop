@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="css/libs.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="{{asset('css/libs.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('css/media.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -18,11 +19,11 @@
 <body>
 <div class="main-wrapper">
     <header class="main-header">
-        <div class="logotype-container"><a href="{{route('index')}}" class="logotype-link"><img src="img/logo.png" alt="Логотип"></a></div>
+        <div class="logotype-container"><a href="{{route('index')}}" class="logotype-link"><img src="/img/logo.png" alt="Логотип"></a></div>
         <nav class="main-navigation">
             <ul class="nav-list">
                 <li class="nav-list__item"><a href="{{route('index')}}" class="nav-list__item__link">Главная</a></li>
-                <li class="nav-list__item"><a href="" class="nav-list__item__link">Мои заказы</a></li>
+                <li class="nav-list__item"><a href="{{route('my-orders')}}" class="nav-list__item__link">Мои заказы</a></li>
                 <li class="nav-list__item"><a href="{{route('news')}}" class="nav-list__item__link">Новости</a></li>
                 <li class="nav-list__item"><a href="{{route('about')}}" class="nav-list__item__link">О компании</a></li>
             </ul>
@@ -67,8 +68,8 @@
                     <div class="sidebar-news">
                         @foreach($randomNews as $item)
                         <div class="sidebar-news__item">
-                            <div class="sidebar-news__item__preview-news"><img src="{{ $item->image }}" alt="image-new" class="sidebar-new__item__preview-new__image"></div>
-                            <div class="sidebar-news__item__title-news"><a href="#" class="sidebar-news__item__title-news__link">{{ $item->title }}</a></div>
+                            <div class="sidebar-news__item__preview-news"><img src="/{{ $item->image }}" alt="image-new" class="sidebar-new__item__preview-new__image"></div>
+                            <div class="sidebar-news__item__title-news"><a href="{{route('single-news', ['id' => $item->id])}}" class="sidebar-news__item__title-news__link">{{ $item->title }}</a></div>
                         </div>
                         @endforeach
                     </div>
@@ -78,7 +79,7 @@
         <div class="main-content">
             <div class="content-top">
                 <div class="content-top__text">Купить игры неборого без регистрации смс с торента, получить компкт диск, скачать Steam игры после оплаты</div>
-                <div class="slider"><img src="img/slider.png" alt="Image" class="image-main"></div>
+                <div class="slider"><img src="/img/slider.png" alt="Image" class="image-main"></div>
             </div>
             <div class="content-middle">
                 <div class="content-head__container">
@@ -137,6 +138,8 @@
         </div>
     </footer>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
