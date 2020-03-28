@@ -9,7 +9,7 @@
         <div class="news-list__container">
             @foreach($news as $item)
                 <div class="news-list__item">
-                    <div class="news-list__item__thumbnail"><img src="{{ $item->image }}"></div>
+                    <div class="news-list__item__thumbnail"><img src="{{ asset('storage/'. $item->image) }}"></div>
                     <div class="news-list__item__content">
                         <div class="news-list__item__content__news-title">{{ $item->title }}</div>
                         <div class="news-list__item__content__news-date">04.12.2016</div>

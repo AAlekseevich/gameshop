@@ -14,9 +14,9 @@
 
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('about', function () { return view('about'); })->name('about');
-Route::get('news', 'NewsController@index')->name('news');
+Route::get('news', 'Front\NewsController@index')->name('news');
 Route::post('search', 'HomeController@search')->name('search');
-Route::get('/single-news/{id}', 'NewsController@singleNews')->name('single-news');
+Route::get('/single-news/{id}', 'Front\NewsController@singleNews')->name('single-news');
 
 
 Route::group( [ 'middleware' => 'admin', 'prefix' => 'admin' ], function () {
@@ -57,7 +57,7 @@ Route::group(['middleware' => ['web']], function() {
 
 Route::group(['middleware' => 'auth'], function()
 {
-    Route::get('orders', 'OrdersController@myOrders')->name('my-orders');
-    Route::get('/product/{id}', 'ProductController@showProduct')->name('product');
-    Route::post('/order/create', 'OrdersController@orderCreate')->name('order.create');
+    Route::get('orders', 'Front\OrdersController@myOrders')->name('my-orders');
+    Route::get('/product/{id}', 'Front\ProductController@showProduct')->name('product');
+    Route::post('/order/create', 'Front\OrdersController@orderCreate')->name('order.create');
 });

@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Products;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Products;
+use Illuminate\Support\Facades\Config;
 
 class HomeController extends Controller
 {
@@ -25,18 +24,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = DB::table('products')
-            ->orderBy('id')
-            ->paginate(6);
+        $products = Products::orderBy('id')
+            ->paginate(Config::get('constants.options.prod_to_page'));
         return view('index', ['products' => $products]);
     }
 
     public function search()
     {
         $data = $_POST['search'];
-        $results = DB::table('products')
-            ->where('name','like','%'. $data .'%')
-            ->paginate(6);
+        $results = Products::where('name','like','%'. $data .'%')
+            ->paginate(Config::get('constants.options.prod_to_page'));
         return view('search', ['results' => $results]);
     }
 }

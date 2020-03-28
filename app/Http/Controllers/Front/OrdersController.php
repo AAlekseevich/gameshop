@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
-use App\Orders;
-use App\Products;
+
+use App\Http\Controllers\Controller;
+use App\Models\Orders;
+use App\Models\Products;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
@@ -23,14 +26,10 @@ class OrdersController extends Controller
         return view('orders', ['products' => $products, 'orders' => $orders, 'sum' => $sum]);
     }
 
-    public function orderCreate()
+    public function orderCreate(Request $request)
     {
-        $order = new Orders();
-        $order->product_id = $_POST['product_id'];
-        $order->name = $_POST['name'];
-        $order->email = $_POST['email'];
-        $order->save();
-
+        $data = $request->only(['product_id', 'name', 'email']);
+        Orders::create($data);
         return redirect()->route('product', ['id' => $_POST['product_id']]);
     }
 }

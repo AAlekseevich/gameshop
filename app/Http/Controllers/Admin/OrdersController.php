@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Orders;
-use Illuminate\Http\Request;
+use App\Models\Orders;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
 
 class OrdersController extends Controller
 {
@@ -18,14 +19,11 @@ class OrdersController extends Controller
         return view('admin.orders.edit', ['order' => Orders::find($id), 'id' => $id]);
     }
 
-    public function update()
+    public function update(Request $request)
     {
         $id = $_POST['id'];
-        $order = Orders::find($id);
-        $order->name = $_POST['name'];
-        $order->email = $_POST['email'];
-        $order->product_id = $_POST['product_id'];
-        $order->save();
+        $data = $request->only(['product_id', 'name', 'email']);
+        Orders::find($id)->update($data);
 
         return redirect()->route('orders');
     }

@@ -3,8 +3,8 @@
 @section('title', 'Главная')
 
 @section('content')
-    Всего пользователей: <?php echo $countUsers ?><br>
-    Всего категорий: <?php echo $countCategory ?><br>
-    Всего товаров: <?php echo $countProducts ?><br>
-    Всего заказов: <br>
+    Всего пользователей: {{$countUsers}}<br>
+    Всего категорий: {{$countCategory}}<br>
+    Всего товаров: {{$countProducts}}<br>
+    Всего заказов: {{ $countOrders }}
 @endsection

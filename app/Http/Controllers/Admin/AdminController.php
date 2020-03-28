@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use App\Models\Categories;
+use App\Models\Orders;
+use App\Models\Products;
+use App\Models\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        $countCategory = DB::table('category')->count();
-        $countUsers = DB::table('users')->count();
-        $countProducts = DB::table('products')->count();
-        return view('admin.index', ['countCategory' => $countCategory, 'countUsers' => $countUsers, 'countProducts' => $countProducts]);
+        $countCategory = Categories::count();
+        $countUsers = User::count();
+        $countProducts = Products::count();
+        $countOrders = Orders::count();
+        return view('admin.index', ['countCategory' => $countCategory, 'countUsers' => $countUsers, 'countProducts' => $countProducts, 'countOrders' => $countOrders]);
     }
 
     public function changemail()

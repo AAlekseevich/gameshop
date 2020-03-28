@@ -7,7 +7,7 @@
 @section('content')
     <div class="content-main__container">
         <div class="product-container">
-            <div class="product-container__image-wrap"><img src="{{$product->image}}" class="image-wrap__image-product"></div>
+            <div class="product-container__image-wrap"><img src="{{ asset('storage/'.$product->image) }}" class="image-wrap__image-product"></div>
             <div class="product-container__content-text">
                 <div class="product-container__content-text__title">{{$product->name}}</div>
                 <div class="product-container__content-text__price">
@@ -35,7 +35,7 @@
                 @foreach($products as $item)
                     <div class="products-columns__item">
                         <div class="products-columns__item__title-product"><a href="{{route('product', ['id' => $item->id])}}" class="products-columns__item__title-product__link">{{$item->name}}</a></div>
-                        <div class="products-columns__item__thumbnail"><a href="{{route('product', ['id' => $item->id])}}" class="products-columns__item__thumbnail__link"><img src="{{$item->image}}" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
+                        <div class="products-columns__item__thumbnail"><a href="{{route('product', ['id' => $item->id])}}" class="products-columns__item__thumbnail__link"><img src="{{ asset('storage/'.$item->image) }}" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
                         <div class="products-columns__item__description"><span class="products-price">{{$item->price}} руб</span><a href="{{route('product', ['id' => $item->id])}}" class="btn btn-blue">Купить</a></div>
                     </div>
                 @endforeach

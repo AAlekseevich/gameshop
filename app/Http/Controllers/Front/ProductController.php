@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
-use App\Products;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
+use App\Http\Controllers\Controller;
+use App\Models\Products;
 
 class ProductController extends Controller
 {
     public function showProduct($id)
     {
-        $random = DB::table('products')->orderByRaw("RAND()")->get();
+        $random = Products::orderByRaw("RAND()")->get();
         $products = $random->random(3);
         return view('product', ['product' => Products::find($id), 'products' => $products]);
     }

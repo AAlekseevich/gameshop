@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Categories;
-use Illuminate\Http\Request;
+use App\Models\Categories;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -15,13 +14,10 @@ class CategoryController extends Controller
         return view('admin.category.category', ['categories' => $categories]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $data = [
-            'name' => $_POST['name'],
-            'description' => $_POST['description']
-        ];
-        Categories::firstOrCreate($data);
+        $data = $request->only(['name', 'description']);
+        Categories::create($data);
         return redirect()->route('category');
     }
 
@@ -35,13 +31,11 @@ class CategoryController extends Controller
         return view('admin.category.edit', ['category' => Categories::find($id), 'id' => $id]);
     }
 
-    public function update()
+    public function update(Request $request)
     {
         $id = $_POST['id'];
-        $category = Categories::find($id);
-        $category->name = $_POST['name'];
-        $category->description = $_POST['description'];
-        $category->save();
+        $data = $request->only(['name', 'description']);
+        Categories::find($id)->update($data);
         return redirect()->route('category');
     }
 

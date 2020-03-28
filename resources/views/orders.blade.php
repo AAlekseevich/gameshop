@@ -8,7 +8,7 @@
     <div class="cart-product-list">
     @foreach($products as $product)
             <div class="cart-product-list__item">
-                <div class="cart-product__item__product-photo"><img src="{{$product->image}}" class="cart-product__item__product-photo__image"></div>
+                <div class="cart-product__item__product-photo"><img src="{{ asset('storage/'.$product->image) }}" class="cart-product__item__product-photo__image"></div>
                 <div class="cart-product__item__product-name">
                     <div class="cart-product__item__product-name__content"><a href="#">{{$product->name}}</a></div>
                 </div>

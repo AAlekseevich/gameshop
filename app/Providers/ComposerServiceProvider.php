@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use App\Categories;
-use App\Products;
+use App\Models\Categories;
+use App\Models\News;
+use App\Models\Products;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -19,8 +20,8 @@ class ComposerServiceProvider extends ServiceProvider
     {
         View::composer(
             'layouts.app', function ($view) {
-                $categories = DB::table('category')->get();
-                $random = DB::table('news')->orderByRaw("RAND()")->get();
+                $categories = Categories::get();
+                $random = News::orderByRaw("RAND()")->get();
                 $randomNews = $random->random(3);
                 $randProduct = Products::orderByRaw("RAND()")->first();
                 $view->with(['categories' => $categories, 'randomNews' => $randomNews, 'randProduct' => $randProduct]);

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Categories;
-use App\Products;
-use Illuminate\Http\Request;
+use App\Models\Categories;
+use App\Models\Products;
 use App\Http\Controllers\Controller;
-use Intervention\Image\ImageManager as Image;
+use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
@@ -16,32 +15,14 @@ class ProductsController extends Controller
         return view('admin.products.products', ['products' => $products]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        if(!empty($_FILES['image']['tmp_name'])) {
-            $tmpPhoto = $_FILES['image']['tmp_name'];
-            $namePhoto = $_FILES['image']['name'];
+        $image = $request->file('image')->storeAs('img/products', $request->input('name') . '.jpg', 'public');
 
-            $imagePath = 'img/' . $namePhoto;
-            if (!file_exists(public_path('img/products/'))) {
-                mkdir(public_path('img/products/'), 777, true);
-            }
-            $manager = new Image(array('driver' => 'gd'));
-            $manager->make($tmpPhoto)->save($imagePath);
-            $image = '/img/' . $namePhoto;
-        } else {
-            $image = '';
-        }
+        $data = $request->only(['name', 'category', 'price', 'count', 'description']);
+        $data['image'] = $image;
 
-        $data = [
-            'name' => $_POST['name'],
-            'category' => $_POST['category'],
-            'price' => $_POST['price'],
-            'count' => $_POST['count'],
-            'description' => $_POST['description'],
-            'image' => $image
-        ];
-        Products::firstOrCreate($data);
+        Products::create($data);
         return redirect()->route('products');
     }
 
@@ -55,32 +36,15 @@ class ProductsController extends Controller
         return view('admin.products.edit', ['product' => Products::find($id), 'categories'=> Categories::get(), 'id' => $id]);
     }
 
-    public function update()
+    public function update(Request $request)
     {
-        if(!empty($_FILES['image']['tmp_name'])) {
-            $tmpPhoto = $_FILES['image']['tmp_name'];
-            $namePhoto = $_FILES['image']['name'];
+        $image = $request->file('image')->storeAs('/img/products', $request->input('name') . '.jpg', 'public');
 
-            $imagePath = 'img/cover/' . $namePhoto;
-            if (!file_exists(public_path('img/cover/'))) {
-                mkdir(public_path('img/cover/'), 777, true);
-            }
-            $manager = new Image(array('driver' => 'gd'));
-            $manager->make($tmpPhoto)->save($imagePath);
-            $image = '/img/cover/' . $namePhoto;
-        } else {
-            $image = '';
-        }
+        $data = $request->only(['name', 'category', 'price', 'count', 'description']);
+        $data['image'] = $image;
 
         $id = $_POST['id'];
-        $product = Products::find($id);
-        $product->name = $_POST['name'];
-        $product->category = $_POST['category'];
-        $product->price = $_POST['price'];
-        $product->count = $_POST['count'];
-        $product->description = $_POST['description'];
-        $product->image = empty($image) ? $product->image : $image;
-        $product->save();
+        Products::find($id)->update($data);
         return redirect()->route('products');
     }
 
