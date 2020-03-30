@@ -1,41 +1,35 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+### Выполнить выпускной проект №4 Игровой-магазин
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+#### Используя спроектированную базу данных из ДЗ №6 разработайте проект на Laravel функционал интернет-каталога.
 
-## About Laravel
+**Пользователь:**
+Может зарегистрироваться.
+Может просматривать:
+- список категорий
+- список товаров
+- страницу одного товара
+По нажатию кнопки купить, со страницы одного товара, пользователю предлагается связаться с менеджером и просят оставить **Имя и email**. **E-mail** подставляется в форму из данных об авторизованном пользователе. **Имя, E-mail и id товара** записывается в базу. Желательно реализовать это с помощью javascript и поп-ап окна.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+**Товар:**
+Имеет следующие характеристики:
+- название
+- категория
+- цена
+- фотография
+- описание
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Категория:**
+Имеет следующие характеристики:
+- название
+- описание
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+**Заказы:**
+Пользователь может оставить заявку на покупку товара. id товара и email пользователя записывается.
+Администратор получает уведомление на E-mail через SMTP.
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
-"# gameshop" 
+**Администратор:**
+Может создавать\редактирование\удалять категории.
+Может создавать\редактировать\удалять товары.
+Может просматривать заказы.
+Может установить\изменить адрес для получения уведомлений.
+Права администратора можно получить поставив галочку при регистрации.
